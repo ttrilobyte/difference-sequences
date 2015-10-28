@@ -22,6 +22,7 @@ public class PointToPolynomial {
 			output += " + ";
 		}
 		output = output.substring(0, output.length() - 3);
+		output += "$";
 		System.out.println(output);
 	}
 	
