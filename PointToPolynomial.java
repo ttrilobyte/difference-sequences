@@ -10,9 +10,12 @@ public class PointToPolynomial {
 	}
 	
 	public void start() {
+		int[] pointlistxyxy = new int[] {1,101,2,102,3,103,4,104,5,105,6,106,7,107};
+		//int[] pointlistxyxy = new int[] {2,4,3,8};
 		Collection<Point2D> points = new ArrayList<Point2D>();
-		points.add(new Point2D(2,4));
-		points.add(new Point2D(3,8));
+		for (int i = 0; i < pointlistxyxy.length - 1; i += 2) {
+			points.add(new Point2D(pointlistxyxy[i], pointlistxyxy[i + 1]));
+		}
 		String output = "$ f(x) = ";
 		for (Point2D p : points) {
 			Collection<Point2D> pointsbutone = new ArrayList<Point2D>();
@@ -27,12 +30,13 @@ public class PointToPolynomial {
 	}
 	
 	public String createTerm(Collection<Point2D> points, Point2D point) {
-		String texresult = "(" + point.y + " * ";
+		String texresult = "(" + point.y + " \\cdot ";
 		int canceller = 0;
 		for (Point2D otherpoint : points) {
 			canceller = point.x - otherpoint.x;
-			texresult += "\\frac{(x - " + otherpoint.x + ")}{" + canceller + "})";
+			texresult += "\\frac{(x - " + otherpoint.x + ")}{" + canceller + "}";
 		}
+		texresult += ")";
 		return texresult;
 	}
 	
